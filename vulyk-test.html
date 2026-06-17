@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Який ти тип бджоли? — @inna_horkovenko</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --beige: #F0EAE0;
+    --beige-dark: #E5DDD0;
+    --black: #1A1A1A;
+    --blue: #3D3D8F;
+    --blue-light: #5A5AB0;
+    --white: #FDFAF6;
+    --text-muted: #7A7A7A;
+  }
+
+  body {
+    background: var(--beige);
+    color: var(--black);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .container {
+    max-width: 640px;
+    width: 100%;
+  }
+
+  /* HEADER */
+  .header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .brand {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--blue);
+    letter-spacing: 0.08em;
+    margin-bottom: 32px;
+  }
+
+  .bee-icon {
+    font-size: 40px;
+    display: block;
+    margin-bottom: 20px;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .main-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 6vw, 44px);
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    color: var(--black);
+  }
+
+  .subtitle {
+    font-size: 15px;
+    color: var(--text-muted);
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  /* PROGRESS */
+  .progress-wrap {
+    margin-bottom: 40px;
+  }
+
+  .progress-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .progress-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+  }
+
+  .progress-bar {
+    height: 2px;
+    background: var(--beige-dark);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: var(--blue);
+    border-radius: 2px;
+    transition: width 0.5s ease;
+  }
+
+  /* QUESTION CARD */
+  .question-card {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 40px 36px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 40px rgba(61, 61, 143, 0.06);
+  }
+
+  .question-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(18px, 4vw, 24px);
+    font-weight: 400;
+    line-height: 1.4;
+    margin-bottom: 32px;
+    color: var(--black);
+  }
+
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .option {
+    background: var(--beige);
+    border: 1.5px solid transparent;
+    border-radius: 12px;
+    padding: 16px 20px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--black);
+    text-align: left;
+    transition: all 0.25s ease;
+    line-height: 1.5;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .option:hover {
+    border-color: var(--blue);
+    background: var(--white);
+    transform: translateX(4px);
+  }
+
+  .option.selected {
+    border-color: var(--blue);
+    background: var(--white);
+    color: var(--blue);
+    font-weight: 500;
+  }
+
+  /* RESULT */
+  .result-card {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 48px 36px;
+    text-align: center;
+    box-shadow: 0 4px 40px rgba(61, 61, 143, 0.06);
+    display: none;
+  }
+
+  .result-card.show { display: block; }
+
+  .result-bee {
+    font-size: 56px;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .result-type {
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    color: var(--blue);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+
+  .result-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(26px, 5vw, 36px);
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: var(--black);
+    line-height: 1.2;
+  }
+
+  .result-description {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #444;
+    margin-bottom: 32px;
+    font-weight: 300;
+  }
+
+  .result-insight {
+    background: var(--beige);
+    border-left: 3px solid var(--blue);
+    border-radius: 0 12px 12px 0;
+    padding: 20px 24px;
+    text-align: left;
+    margin-bottom: 40px;
+  }
+
+  .result-insight-label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--blue);
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  .result-insight-text {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--black);
+    line-height: 1.6;
+  }
+
+  .divider {
+    height: 1px;
+    background: var(--beige-dark);
+    margin: 40px 0;
+  }
+
+  .cta-label {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    letter-spacing: 0.03em;
+  }
+
+  .cta-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    margin-bottom: 12px;
+    color: var(--black);
+  }
+
+  .cta-text {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 28px;
+    font-weight: 300;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--blue);
+    color: white;
+    padding: 16px 36px;
+    border-radius: 50px;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    border: none;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.02em;
+    width: 100%;
+    text-align: center;
+  }
+
+  .btn-primary:hover {
+    background: var(--blue-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(61, 61, 143, 0.25);
+  }
+
+  .btn-secondary {
+    display: inline-block;
+    background: transparent;
+    color: var(--blue);
+    padding: 14px 36px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 400;
+    text-decoration: none;
+    border: 1.5px solid var(--blue);
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.25s ease;
+    width: 100%;
+    text-align: center;
+    margin-top: 12px;
+  }
+
+  .btn-secondary:hover {
+    background: var(--beige);
+  }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    margin-top: 32px;
+    font-size: 12px;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  /* HIDDEN */
+  .hidden { display: none; }
+
+  /* FADE */
+  .fade-in {
+    animation: fadeIn 0.4s ease forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* SCORE DOTS */
+  .score-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+
+  .score-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--beige-dark);
+    transition: all 0.3s ease;
+  }
+
+  .score-dot.active { background: var(--blue); transform: scale(1.3); }
+  .score-dot.filled { background: var(--blue); opacity: 0.4; }
+
+  @media (max-width: 480px) {
+    .question-card, .result-card { padding: 28px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header" id="headerSection">
+    <div class="brand">@inna_horkovenko</div>
+    <span class="bee-icon">🐝</span>
+    <h1 class="main-title">Який ти тип бджоли?</h1>
+    <p class="subtitle">10 питань — і ти дізнаєшся чому так відчуваєш себе на роботі</p>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="progress-wrap hidden" id="progressSection">
+    <div class="progress-info">
+      <span class="progress-label" id="progressLabel">Питання 1 з 10</span>
+      <span class="progress-label" id="progressPercent">0%</span>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+    </div>
+  </div>
+
+  <!-- START CARD -->
+  <div class="question-card fade-in" id="startCard">
+    <p class="question-text" style="font-style:italic; color: var(--text-muted); font-size:16px; margin-bottom:20px;">
+      Цей тест розроблений на основі позитивної психотерапії Пезешкіана та 10 років практики роботи з людьми у кризі кар'єрного вибору.
+    </p>
+    <p class="question-text" style="font-size:18px;">
+      Відповідай чесно — тут немає правильних чи неправильних відповідей. Є тільки твоя правда.
+    </p>
+    <div style="margin-top: 32px;">
+      <button class="btn-primary" onclick="startQuiz()">Почати тест 🐝</button>
+    </div>
+  </div>
+
+  <!-- QUESTION CARD -->
+  <div class="question-card hidden fade-in" id="questionCard">
+    <div class="score-dots" id="scoreDots"></div>
+    <p class="question-text" id="questionText"></p>
+    <div class="options" id="optionsContainer"></div>
+  </div>
+
+  <!-- RESULT CARD -->
+  <div class="result-card" id="resultCard">
+    <span class="result-bee" id="resultBee"></span>
+    <div class="result-type" id="resultType"></div>
+    <h2 class="result-title" id="resultTitle"></h2>
+    <p class="result-description" id="resultDescription"></p>
+    <div class="result-insight">
+      <div class="result-insight-label">Психологічна правда</div>
+      <p class="result-insight-text" id="resultInsight"></p>
+    </div>
+    <div class="divider"></div>
+    <div class="cta-label">Наступний крок</div>
+    <h3 class="cta-title" id="ctaTitle"></h3>
+    <p class="cta-text" id="ctaText"></p>
+    <a href="https://t.me/innahorkovenko" class="btn-primary" id="ctaButton">Записатись на консультацію 🐝</a>
+    <button class="btn-secondary" onclick="restartQuiz()">Пройти ще раз</button>
+  </div>
+
+  <div class="footer">
+    твій вулик чекає на тебе ♡
+  </div>
+
+</div>
+
+<script>
+const questions = [
+  {
+    text: "Неділя ввечері. Що ти відчуваєш коли думаєш про завтрашній день?",
+    options: [
+      { text: "Тривога — і я не розумію чому", type: "A" },
+      { text: "Просто порожньо. Ні так ні сяк", type: "B" },
+      { text: "Легка втома але готова йти", type: "C" },
+      { text: "Взагалі намагаюсь не думати", type: "A" }
+    ]
+  },
+  {
+    text: "Коли тебе хвалять на роботі — що відчуваєш?",
+    options: [
+      { text: "Приємно але якось порожньо всередині", type: "A" },
+      { text: "Думаю: 'Та за що? Це ж нічого особливого'", type: "B" },
+      { text: "Щиро радію — бо знаю що зробила добре", type: "C" },
+      { text: "Підозрюю що чогось хочуть натомість", type: "B" }
+    ]
+  },
+  {
+    text: "Як ти описала б свою роботу найближчій подрузі?",
+    options: [
+      { text: "Нормально. Гірше буває", type: "B" },
+      { text: "Багато роблю але не розумію навіщо", type: "A" },
+      { text: "Складно але цікаво — є куди рости", type: "C" },
+      { text: "Чесно? Не моє. Але поки що тут", type: "B" }
+    ]
+  },
+  {
+    text: "Ти думаєш про зміну роботи або сфери?",
+    options: [
+      { text: "Постійно але не наважуюсь", type: "B" },
+      { text: "Думаю але не знаю чого хочу натомість", type: "A" },
+      { text: "Ні — мені тут добре або я вже міняю", type: "C" },
+      { text: "Так і вже майже вирішила", type: "B" }
+    ]
+  },
+  {
+    text: "Як ти відновлюєшся після робочого тижня?",
+    options: [
+      { text: "Довго — і все одно не відпочиваю", type: "A" },
+      { text: "Намагаюсь не думати про роботу взагалі", type: "B" },
+      { text: "Відпочиваю і хочу повернутись", type: "C" },
+      { text: "Який відпочинок — я завжди на зв'язку", type: "A" }
+    ]
+  },
+  {
+    text: "Коли ти думаєш про свою роботу за 5 років — що бачиш?",
+    options: [
+      { text: "Туман. Не можу уявити", type: "A" },
+      { text: "Те саме що зараз — і це лякає", type: "B" },
+      { text: "Ріст у своїй сфері або свій проєкт", type: "C" },
+      { text: "Хочу геть іншого але не знаю що", type: "B" }
+    ]
+  },
+  {
+    text: "Твої колеги на роботі — це...",
+    options: [
+      { text: "Просто люди з якими я проводжу час", type: "B" },
+      { text: "Люди яким я намагаюсь відповідати", type: "A" },
+      { text: "Частина того чому мені тут добре", type: "C" },
+      { text: "Чужі люди в чужому місці", type: "B" }
+    ]
+  },
+  {
+    text: "Що для тебе найважче у роботі прямо зараз?",
+    options: [
+      { text: "Відчуття що роблю але нічого не змінюється", type: "A" },
+      { text: "Те що це взагалі не моє", type: "B" },
+      { text: "Конкретні задачі — але я справляюсь", type: "C" },
+      { text: "Постійна тривога що щось йде не так", type: "A" }
+    ]
+  },
+  {
+    text: "Якщо уявити роботу як дім — де ти зараз?",
+    options: [
+      { text: "В чужому домі. Поводжусь ввічливо але хочу додому", type: "B" },
+      { text: "В домі без вікон. Є стіни але незрозуміло навіщо", type: "A" },
+      { text: "Вдома. Не ідеально але моє", type: "C" },
+      { text: "На вулиці — ще шукаю куди зайти", type: "A" }
+    ]
+  },
+  {
+    text: "Що ти відчуваєш після того як завершила складний проєкт?",
+    options: [
+      { text: "Полегшення що скінчилось — і все", type: "B" },
+      { text: "Втому і питання: навіщо це все?", type: "A" },
+      { text: "Гордість і бажання братись за наступне", type: "C" },
+      { text: "Тривогу — бо зараз дадуть ще більше", type: "A" }
+    ]
+  }
+];
+
+const results = {
+  A: {
+    bee: "🐝",
+    type: "Тип 1",
+    title: "Бджола без вулика",
+    description: "Ти працюєш багато і віддаєш себе повністю. Але десь всередині є відчуття порожнечі — ніби крутишся але не розумієш навіщо. Втома накопичується. Мотивація зникає. І навіть успіхи не радують так як мали б.",
+    insight: "У психології це називається екзистенційний вакуум — є дії, але немає сенсу. Це не слабкість і не лінь. Це сигнал що твоя робота поки що не пов'язана з тим що для тебе справді важливо.",
+    ctaTitle: "Знайдемо твій вулик разом",
+    ctaText: "На консультації ми розберемо що забирає твою енергію і знайдемо де твій справжній напрямок. Без загальних порад — тільки конкретна робота з твоєю ситуацією."
+  },
+  B: {
+    bee: "🐝",
+    type: "Тип 2",
+    title: "Бджола в чужому вулику",
+    description: "Все об'єктивно нормально. Зарплата є, колеги нормальні, скаржитись нема на що. Але суб'єктивно — щось постійно не так. Це відчуття що ти не на своєму місці — і воно не проходить.",
+    insight: "У психології це конфлікт між 'треба' і 'хочу'. Тіло вже знає що це не твоє — і дає сигнали. Голова ще сперечається і знаходить причини залишатись. Це найнебезпечніший стан — бо болю особливого немає, але і радості теж.",
+    ctaTitle: "Час повернутись до себе",
+    ctaText: "На консультації ми розберемо чому ти опинилась тут і що насправді є твоїм. Не 'що модно' і не 'що добре оплачується' — а що твоє."
+  },
+  C: {
+    bee: "🐝",
+    type: "Тип 3",
+    title: "Бджола у своєму вулику",
+    description: "Ти втомлюєшся — але правильною втомою. Повертаєшся — і хочеш повернутись. Є труднощі, але є і відчуття що ти на своєму місці. Це не ідеально — але це твоє.",
+    insight: "У психології це стан потоку і узгодженості цінностей. Не щастя щохвилини — а правильність напрямку. Ти вже в своєму вулику. Питання — як зробити його ще більш своїм і не загубити це відчуття.",
+    ctaTitle: "Поглибимо те що вже працює",
+    ctaText: "На консультації ми подивимось як зберегти і розвинути те що у тебе вже є — щоб не вигоріти і продовжувати рости у своєму напрямку."
+  }
+};
+
+let currentQuestion = 0;
+let scores = { A: 0, B: 0, C: 0 };
+
+function startQuiz() {
+  document.getElementById('startCard').classList.add('hidden');
+  document.getElementById('progressSection').classList.remove('hidden');
+  document.getElementById('questionCard').classList.remove('hidden');
+  buildDots();
+  showQuestion();
+}
+
+function buildDots() {
+  const container = document.getElementById('scoreDots');
+  container.innerHTML = '';
+  for (let i = 0; i < questions.length; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'score-dot';
+    dot.id = `dot-${i}`;
+    container.appendChild(dot);
+  }
+}
+
+function updateDots() {
+  for (let i = 0; i < questions.length; i++) {
+    const dot = document.getElementById(`dot-${i}`);
+    if (i < currentQuestion) dot.className = 'score-dot filled';
+    else if (i === currentQuestion) dot.className = 'score-dot active';
+    else dot.className = 'score-dot';
+  }
+}
+
+function showQuestion() {
+  const q = questions[currentQuestion];
+  document.getElementById('questionText').textContent = q.text;
+
+  const container = document.getElementById('optionsContainer');
+  container.innerHTML = '';
+  q.options.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'option';
+    btn.textContent = opt.text;
+    btn.onclick = () => selectOption(opt.type, btn);
+    container.appendChild(btn);
+  });
+
+  const pct = Math.round((currentQuestion / questions.length) * 100);
+  document.getElementById('progressLabel').textContent = `Питання ${currentQuestion + 1} з ${questions.length}`;
+  document.getElementById('progressPercent').textContent = pct + '%';
+  document.getElementById('progressFill').style.width = pct + '%';
+
+  updateDots();
+
+  const card = document.getElementById('questionCard');
+  card.classList.remove('fade-in');
+  void card.offsetWidth;
+  card.classList.add('fade-in');
+}
+
+function selectOption(type, btn) {
+  document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+  btn.classList.add('selected');
+
+  setTimeout(() => {
+    scores[type]++;
+    currentQuestion++;
+
+    if (currentQuestion < questions.length) {
+      showQuestion();
+    } else {
+      showResult();
+    }
+  }, 400);
+}
+
+function showResult() {
+  document.getElementById('questionCard').classList.add('hidden');
+  document.getElementById('progressSection').classList.add('hidden');
+  document.getElementById('headerSection').classList.add('hidden');
+
+  const topType = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+  const r = results[topType];
+
+  document.getElementById('resultBee').textContent = r.bee;
+  document.getElementById('resultType').textContent = r.type;
+  document.getElementById('resultTitle').textContent = r.title;
+  document.getElementById('resultDescription').textContent = r.description;
+  document.getElementById('resultInsight').textContent = r.insight;
+  document.getElementById('ctaTitle').textContent = r.ctaTitle;
+  document.getElementById('ctaText').textContent = r.ctaText;
+
+  const resultCard = document.getElementById('resultCard');
+  resultCard.classList.add('show', 'fade-in');
+
+  document.getElementById('progressFill').style.width = '100%';
+}
+
+function restartQuiz() {
+  currentQuestion = 0;
+  scores = { A: 0, B: 0, C: 0 };
+
+  document.getElementById('resultCard').classList.remove('show');
+  document.getElementById('headerSection').classList.remove('hidden');
+  document.getElementById('startCard').classList.remove('hidden');
+}
+</script>
+</body>
+</html>
