@@ -3,650 +3,1211 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Який ти тип бджоли? — @inna_horkovenko</title>
+<title>Який ти тип бджоли? · Інна Горковенко</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap');
+:root {
+  --beige: #F0EAE0;
+  --beige-light: #F7F3EE;
+  --beige-dark: #E0D8CC;
+  --ink: #1A1A1A;
+  --ink-soft: #555;
+  --blue: #3D3D8F;
+  --blue-light: #EEEEF8;
+  --blue-mid: #5A5AB0;
+  --gold: #8B6914;
+  --gold-light: #FDF6E3;
+  --bordeaux: #7A1F2E;
+  --teal: #2A5C5A;
+  --white: #FDFAF6;
+}
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-  :root {
-    --beige: #F0EAE0;
-    --beige-dark: #E5DDD0;
-    --black: #1A1A1A;
-    --blue: #3D3D8F;
-    --blue-light: #5A5AB0;
-    --white: #FDFAF6;
-    --text-muted: #7A7A7A;
-  }
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--beige);
+  color: var(--ink);
+  min-height: 100vh;
+}
 
-  body {
-    background: var(--beige);
-    color: var(--black);
-    font-family: 'Inter', sans-serif;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-  }
+/* ── SCREENS ── */
+.screen { display: none; }
+.screen.active { display: block; }
 
-  .container {
-    max-width: 640px;
-    width: 100%;
-  }
+/* ── INTRO ── */
+.intro {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  text-align: center;
+}
+.intro-bee {
+  font-size: 56px;
+  margin-bottom: 24px;
+  animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.intro-eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+.intro h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 7vw, 44px);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 16px;
+  color: var(--ink);
+}
+.intro h1 em {
+  font-style: italic;
+  color: var(--blue);
+}
+.intro-sub {
+  font-size: 16px;
+  color: var(--ink-soft);
+  line-height: 1.7;
+  max-width: 420px;
+  margin: 0 auto 12px;
+}
+.intro-stats {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  margin: 24px 0 36px;
+  flex-wrap: wrap;
+}
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--blue);
+}
+.stat-label {
+  font-size: 11px;
+  color: var(--ink-soft);
+  letter-spacing: 0.05em;
+}
+.btn-start {
+  background: var(--blue);
+  color: white;
+  border: none;
+  padding: 18px 48px;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.25s;
+  box-shadow: 0 8px 24px rgba(61,61,143,0.3);
+  letter-spacing: 0.02em;
+}
+.btn-start:hover {
+  background: var(--blue-mid);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(61,61,143,0.35);
+}
+.intro-note {
+  margin-top: 20px;
+  font-size: 13px;
+  color: #aaa;
+  font-style: italic;
+}
+.author-line {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--beige-dark);
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+.author-line strong { color: var(--ink); }
 
-  /* HEADER */
-  .header {
-    text-align: center;
-    margin-bottom: 48px;
-  }
+/* ── QUIZ ── */
+.quiz-wrap {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 32px 24px 64px;
+}
+.quiz-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+.quiz-brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--blue);
+}
+.quiz-progress-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+.quiz-progress-text {
+  font-size: 12px;
+  color: var(--ink-soft);
+  letter-spacing: 0.04em;
+}
+.quiz-progress-bar {
+  width: 120px;
+  height: 4px;
+  background: var(--beige-dark);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.quiz-progress-fill {
+  height: 100%;
+  background: var(--blue);
+  border-radius: 2px;
+  transition: width 0.4s ease;
+}
 
-  .brand {
-    font-family: 'Inter', sans-serif;
-    font-size: 13px;
-    font-weight: 400;
-    color: var(--blue);
-    letter-spacing: 0.08em;
-    margin-bottom: 32px;
-  }
+.question-block {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 32px 28px;
+  box-shadow: 0 4px 24px rgba(26,26,26,0.06);
+  margin-bottom: 24px;
+}
+.q-part-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+.q-num {
+  font-size: 11px;
+  font-weight: 600;
+  color: #ccc;
+  letter-spacing: 0.06em;
+  margin-bottom: 8px;
+}
+.q-text {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(17px, 3vw, 20px);
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 24px;
+  color: var(--ink);
+}
 
-  .bee-icon {
-    font-size: 40px;
-    display: block;
-    margin-bottom: 20px;
-    animation: float 3s ease-in-out infinite;
-  }
+/* Choice options */
+.options { display: flex; flex-direction: column; gap: 10px; }
+.option-btn {
+  background: var(--beige-light);
+  border: 2px solid transparent;
+  border-radius: 14px;
+  padding: 14px 18px;
+  text-align: left;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+  transition: all 0.2s;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.option-btn:hover {
+  border-color: var(--blue);
+  color: var(--ink);
+  background: var(--blue-light);
+}
+.option-btn.selected {
+  border-color: var(--blue);
+  background: var(--blue-light);
+  color: var(--ink);
+}
+.option-letter {
+  font-weight: 700;
+  color: var(--blue);
+  flex-shrink: 0;
+  width: 20px;
+  font-size: 13px;
+  padding-top: 1px;
+}
 
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-  }
+/* Scale options */
+.scale-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.scale-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #aaa;
+  padding: 0 2px;
+  margin-bottom: 4px;
+  font-style: italic;
+}
+.scale-btns {
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+}
+.scale-btn {
+  flex: 1;
+  aspect-ratio: 1;
+  background: var(--beige-light);
+  border: 2px solid transparent;
+  border-radius: 12px;
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.scale-btn:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-light); }
+.scale-btn.selected { border-color: var(--blue); background: var(--blue); color: white; }
 
-  .main-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(28px, 6vw, 44px);
-    font-weight: 400;
-    line-height: 1.2;
-    margin-bottom: 16px;
-    color: var(--black);
-  }
+/* Yesno */
+.yesno-wrap { display: flex; gap: 12px; }
+.yesno-btn {
+  flex: 1;
+  padding: 16px;
+  background: var(--beige-light);
+  border: 2px solid transparent;
+  border-radius: 14px;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: var(--ink-soft);
+}
+.yesno-btn:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-light); }
+.yesno-btn.selected { border-color: var(--blue); background: var(--blue); color: white; }
 
-  .subtitle {
-    font-size: 15px;
-    color: var(--text-muted);
-    font-weight: 300;
-    line-height: 1.6;
-  }
+/* Nav */
+.quiz-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.btn-back {
+  background: none;
+  border: 1.5px solid var(--beige-dark);
+  color: var(--ink-soft);
+  padding: 12px 20px;
+  border-radius: 999px;
+  font-size: 14px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.2s;
+}
+.btn-back:hover { border-color: var(--ink-soft); color: var(--ink); }
+.btn-next {
+  background: var(--blue);
+  color: white;
+  border: none;
+  padding: 14px 32px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.25s;
+  opacity: 0.4;
+  pointer-events: none;
+}
+.btn-next.ready {
+  opacity: 1;
+  pointer-events: all;
+  box-shadow: 0 6px 20px rgba(61,61,143,0.25);
+}
+.btn-next.ready:hover { background: var(--blue-mid); transform: translateY(-1px); }
 
-  /* PROGRESS */
-  .progress-wrap {
-    margin-bottom: 40px;
-  }
+/* ── RESULT ── */
+.result-screen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.result-hero {
+  padding: 48px 24px 40px;
+  text-align: center;
+}
+.result-type-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 999px;
+  margin-bottom: 20px;
+}
+.type1 .result-type-badge { background: rgba(122,31,46,0.12); color: var(--bordeaux); }
+.type2 .result-type-badge { background: var(--gold-light); color: var(--gold); }
+.type3 .result-type-badge { background: rgba(42,92,90,0.1); color: var(--teal); }
 
-  .progress-info {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-  }
+.result-bee { font-size: 52px; margin-bottom: 16px; }
+.result-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(26px, 6vw, 38px);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+.type1 .result-title { color: var(--bordeaux); }
+.type2 .result-title { color: var(--gold); }
+.type3 .result-title { color: var(--teal); }
 
-  .progress-label {
-    font-size: 12px;
-    color: var(--text-muted);
-    letter-spacing: 0.05em;
-  }
+.result-tagline {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 17px;
+  color: var(--ink-soft);
+  max-width: 400px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
 
-  .progress-bar {
-    height: 2px;
-    background: var(--beige-dark);
-    border-radius: 2px;
-    overflow: hidden;
-  }
+.result-body {
+  max-width: 580px;
+  margin: 0 auto;
+  padding: 0 24px 64px;
+}
 
-  .progress-fill {
-    height: 100%;
-    background: var(--blue);
-    border-radius: 2px;
-    transition: width 0.5s ease;
-  }
+.result-card {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 28px 24px;
+  margin-bottom: 16px;
+  box-shadow: 0 3px 16px rgba(26,26,26,0.05);
+}
+.result-card-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.type1 .result-card-label { color: var(--bordeaux); }
+.type2 .result-card-label { color: var(--gold); }
+.type3 .result-card-label { color: var(--teal); }
 
-  /* QUESTION CARD */
-  .question-card {
-    background: var(--white);
-    border-radius: 20px;
-    padding: 40px 36px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 40px rgba(61, 61, 143, 0.06);
-  }
+.result-card p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  margin-bottom: 10px;
+}
+.result-card p:last-child { margin-bottom: 0; }
+.result-card p strong { color: var(--ink); font-weight: 600; }
 
-  .question-text {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(18px, 4vw, 24px);
-    font-weight: 400;
-    line-height: 1.4;
-    margin-bottom: 32px;
-    color: var(--black);
-  }
+.result-traits {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.result-traits li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+.trait-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 6px;
+}
+.type1 .trait-dot { background: var(--bordeaux); }
+.type2 .trait-dot { background: var(--gold); }
+.type3 .trait-dot { background: var(--teal); }
 
-  .options {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
+.risk-card {
+  border-radius: 16px;
+  padding: 20px 22px;
+  margin-bottom: 16px;
+}
+.type1 .risk-card { background: rgba(122,31,46,0.06); }
+.type2 .risk-card { background: var(--gold-light); }
+.type3 .risk-card { background: rgba(42,92,90,0.06); }
 
-  .option {
-    background: var(--beige);
-    border: 1.5px solid transparent;
-    border-radius: 12px;
-    padding: 16px 20px;
-    cursor: pointer;
-    font-size: 15px;
-    font-weight: 300;
-    color: var(--black);
-    text-align: left;
-    transition: all 0.25s ease;
-    line-height: 1.5;
-    font-family: 'Inter', sans-serif;
-  }
+.risk-card p {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
 
-  .option:hover {
-    border-color: var(--blue);
-    background: var(--white);
-    transform: translateX(4px);
-  }
+/* ── PRACTICE GIFT ── */
+.practice-gift {
+  border-radius: 20px;
+  padding: 28px 24px;
+  margin-bottom: 16px;
+  position: relative;
+  overflow: hidden;
+}
+.type1 .practice-gift { background: linear-gradient(135deg, #7A1F2E 0%, #5C1520 100%); }
+.type2 .practice-gift { background: linear-gradient(135deg, #8B6914 0%, #6B4F10 100%); }
+.type3 .practice-gift { background: linear-gradient(135deg, #2A5C5A 0%, #1E4442 100%); }
 
-  .option.selected {
-    border-color: var(--blue);
-    background: var(--white);
-    color: var(--blue);
-    font-weight: 500;
-  }
+.practice-gift::before {
+  content: '';
+  position: absolute;
+  top: -20px; right: -20px;
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+}
+.gift-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 10px;
+  position: relative;
+}
+.gift-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 10px;
+  position: relative;
+}
+.gift-text {
+  font-size: 14px;
+  color: rgba(255,255,255,0.8);
+  line-height: 1.65;
+  margin-bottom: 20px;
+  position: relative;
+}
+.gift-steps {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 24px;
+  position: relative;
+}
+.gift-steps li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 14px;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.5;
+}
+.gift-step-num {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700;
+  color: white; flex-shrink: 0;
+  margin-top: 1px;
+}
 
-  /* RESULT */
-  .result-card {
-    background: var(--white);
-    border-radius: 20px;
-    padding: 48px 36px;
-    text-align: center;
-    box-shadow: 0 4px 40px rgba(61, 61, 143, 0.06);
-    display: none;
-  }
+/* ── NEXT STEPS CTA ── */
+.next-steps {
+  background: var(--blue);
+  border-radius: 20px;
+  padding: 28px 24px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+.next-steps-eyebrow {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 10px;
+}
+.next-steps h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+.next-steps p {
+  font-size: 14px;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+.btn-cta-white {
+  display: block;
+  background: white;
+  color: var(--blue);
+  padding: 15px 28px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.2s;
+  margin-bottom: 10px;
+}
+.btn-cta-white:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+.btn-cta-ghost {
+  display: block;
+  background: transparent;
+  color: rgba(255,255,255,0.7);
+  padding: 12px 28px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  transition: color 0.2s;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+.btn-cta-ghost:hover { color: white; border-color: rgba(255,255,255,0.5); }
 
-  .result-card.show { display: block; }
+.links-row {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.link-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--white);
+  border-radius: 14px;
+  padding: 16px 18px;
+  text-decoration: none;
+  color: var(--ink);
+  border: 1.5px solid transparent;
+  transition: all 0.2s;
+  box-shadow: 0 2px 10px rgba(26,26,26,0.04);
+}
+.link-card:hover { border-color: var(--blue); }
+.link-card-left { display: flex; align-items: center; gap: 12px; }
+.link-card-icon { font-size: 18px; }
+.link-card-title { font-size: 14px; font-weight: 600; color: var(--ink); }
+.link-card-sub { font-size: 12px; color: #aaa; margin-top: 1px; }
+.link-card-arrow { color: #ccc; font-size: 14px; }
+.link-card-price { font-size: 13px; font-weight: 700; color: var(--blue); }
 
-  .result-bee {
-    font-size: 56px;
-    display: block;
-    margin-bottom: 8px;
-  }
+.retake-link {
+  text-align: center;
+  padding: 16px 0;
+}
+.retake-link button {
+  background: none;
+  border: none;
+  color: #aaa;
+  font-size: 13px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  text-decoration: underline;
+}
 
-  .result-type {
-    font-size: 12px;
-    letter-spacing: 0.15em;
-    color: var(--blue);
-    text-transform: uppercase;
-    margin-bottom: 12px;
-    font-weight: 500;
-  }
-
-  .result-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(26px, 5vw, 36px);
-    font-weight: 700;
-    margin-bottom: 24px;
-    color: var(--black);
-    line-height: 1.2;
-  }
-
-  .result-description {
-    font-size: 15px;
-    line-height: 1.8;
-    color: #444;
-    margin-bottom: 32px;
-    font-weight: 300;
-  }
-
-  .result-insight {
-    background: var(--beige);
-    border-left: 3px solid var(--blue);
-    border-radius: 0 12px 12px 0;
-    padding: 20px 24px;
-    text-align: left;
-    margin-bottom: 40px;
-  }
-
-  .result-insight-label {
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    color: var(--blue);
-    text-transform: uppercase;
-    font-weight: 500;
-    margin-bottom: 8px;
-  }
-
-  .result-insight-text {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 16px;
-    color: var(--black);
-    line-height: 1.6;
-  }
-
-  .divider {
-    height: 1px;
-    background: var(--beige-dark);
-    margin: 40px 0;
-  }
-
-  .cta-label {
-    font-size: 13px;
-    color: var(--text-muted);
-    margin-bottom: 16px;
-    letter-spacing: 0.03em;
-  }
-
-  .cta-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    margin-bottom: 12px;
-    color: var(--black);
-  }
-
-  .cta-text {
-    font-size: 14px;
-    color: var(--text-muted);
-    line-height: 1.6;
-    margin-bottom: 28px;
-    font-weight: 300;
-  }
-
-  .btn-primary {
-    display: inline-block;
-    background: var(--blue);
-    color: white;
-    padding: 16px 36px;
-    border-radius: 50px;
-    font-size: 15px;
-    font-weight: 500;
-    text-decoration: none;
-    transition: all 0.25s ease;
-    border: none;
-    cursor: pointer;
-    font-family: 'Inter', sans-serif;
-    letter-spacing: 0.02em;
-    width: 100%;
-    text-align: center;
-  }
-
-  .btn-primary:hover {
-    background: var(--blue-light);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(61, 61, 143, 0.25);
-  }
-
-  .btn-secondary {
-    display: inline-block;
-    background: transparent;
-    color: var(--blue);
-    padding: 14px 36px;
-    border-radius: 50px;
-    font-size: 14px;
-    font-weight: 400;
-    text-decoration: none;
-    border: 1.5px solid var(--blue);
-    cursor: pointer;
-    font-family: 'Inter', sans-serif;
-    transition: all 0.25s ease;
-    width: 100%;
-    text-align: center;
-    margin-top: 12px;
-  }
-
-  .btn-secondary:hover {
-    background: var(--beige);
-  }
-
-  /* FOOTER */
-  .footer {
-    text-align: center;
-    margin-top: 32px;
-    font-size: 12px;
-    color: var(--text-muted);
-    font-style: italic;
-  }
-
-  /* HIDDEN */
-  .hidden { display: none; }
-
-  /* FADE */
-  .fade-in {
-    animation: fadeIn 0.4s ease forwards;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(12px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  /* SCORE DOTS */
-  .score-dots {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-bottom: 32px;
-    flex-wrap: wrap;
-  }
-
-  .score-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--beige-dark);
-    transition: all 0.3s ease;
-  }
-
-  .score-dot.active { background: var(--blue); transform: scale(1.3); }
-  .score-dot.filled { background: var(--blue); opacity: 0.4; }
-
-  @media (max-width: 480px) {
-    .question-card, .result-card { padding: 28px 20px; }
-  }
+/* ── RESPONSIVE ── */
+@media (max-width: 480px) {
+  .question-block { padding: 24px 18px; }
+  .scale-btn { font-size: 16px; border-radius: 10px; }
+  .result-body { padding: 0 16px 48px; }
+}
 </style>
 </head>
 <body>
 
-<div class="container">
-
-  <!-- HEADER -->
-  <div class="header" id="headerSection">
-    <div class="brand">@inna_horkovenko</div>
-    <span class="bee-icon">🐝</span>
-    <h1 class="main-title">Який ти тип бджоли?</h1>
-    <p class="subtitle">10 питань — і ти дізнаєшся чому так відчуваєш себе на роботі</p>
-  </div>
-
-  <!-- PROGRESS -->
-  <div class="progress-wrap hidden" id="progressSection">
-    <div class="progress-info">
-      <span class="progress-label" id="progressLabel">Питання 1 з 10</span>
-      <span class="progress-label" id="progressPercent">0%</span>
+<!-- ══ INTRO ══ -->
+<div id="screenIntro" class="screen active">
+  <div class="intro">
+    <div class="intro-bee">🐝</div>
+    <div class="intro-eyebrow">Діагностичний тест · Інна Горковенко</div>
+    <h1>Який ти тип<br><em>бджоли?</em></h1>
+    <p class="intro-sub">Ти у своєму вулику — чи вже давно в чужому, просто звикла?</p>
+    <div class="intro-stats">
+      <div class="stat"><span class="stat-num">15</span><span class="stat-label">запитань</span></div>
+      <div class="stat"><span class="stat-num">3</span><span class="stat-label">типи результату</span></div>
+      <div class="stat"><span class="stat-num">10</span><span class="stat-label">хвилин</span></div>
     </div>
-    <div class="progress-bar">
-      <div class="progress-fill" id="progressFill" style="width: 0%"></div>
-    </div>
-  </div>
-
-  <!-- START CARD -->
-  <div class="question-card fade-in" id="startCard">
-    <p class="question-text" style="font-style:italic; color: var(--text-muted); font-size:16px; margin-bottom:20px;">
-      Цей тест розроблений на основі позитивної психотерапії Пезешкіана та 10 років практики роботи з людьми у кризі кар'єрного вибору.
-    </p>
-    <p class="question-text" style="font-size:18px;">
-      Відповідай чесно — тут немає правильних чи неправильних відповідей. Є тільки твоя правда.
-    </p>
-    <div style="margin-top: 32px;">
-      <button class="btn-primary" onclick="startQuiz()">Почати тест 🐝</button>
+    <button class="btn-start" onclick="startQuiz()">Пройти тест →</button>
+    <p class="intro-note">Відповідай як є — не як "треба". Немає правильних відповідей.</p>
+    <div class="author-line">
+      від <strong>Інни Горковенко</strong> · психолог · бізнес-тренер · PhD ·
+      <a href="https://t.me/innahorkovenko" style="color:var(--blue);text-decoration:none;">@innahorkovenko</a>
     </div>
   </div>
+</div>
 
-  <!-- QUESTION CARD -->
-  <div class="question-card hidden fade-in" id="questionCard">
-    <div class="score-dots" id="scoreDots"></div>
-    <p class="question-text" id="questionText"></p>
-    <div class="options" id="optionsContainer"></div>
-  </div>
-
-  <!-- RESULT CARD -->
-  <div class="result-card" id="resultCard">
-    <span class="result-bee" id="resultBee"></span>
-    <div class="result-type" id="resultType"></div>
-    <h2 class="result-title" id="resultTitle"></h2>
-    <p class="result-description" id="resultDescription"></p>
-    <div class="result-insight">
-      <div class="result-insight-label">Психологічна правда</div>
-      <p class="result-insight-text" id="resultInsight"></p>
+<!-- ══ QUIZ ══ -->
+<div id="screenQuiz" class="screen">
+  <div class="quiz-wrap">
+    <div class="quiz-header">
+      <span class="quiz-brand">🐝 Знайди свій вулик</span>
+      <div class="quiz-progress-wrap">
+        <span class="quiz-progress-text" id="progressText">1 з 15</span>
+        <div class="quiz-progress-bar">
+          <div class="quiz-progress-fill" id="progressFill" style="width:7%"></div>
+        </div>
+      </div>
     </div>
-    <div class="divider"></div>
-    <div class="cta-label">Наступний крок</div>
-    <h3 class="cta-title" id="ctaTitle"></h3>
-    <p class="cta-text" id="ctaText"></p>
-    <a href="https://t.me/innahorkovenko" class="btn-primary" id="ctaButton">Записатись на консультацію 🐝</a>
-    <button class="btn-secondary" onclick="restartQuiz()">Пройти ще раз</button>
+    <div id="questionContainer"></div>
+    <div class="quiz-nav">
+      <button class="btn-back" id="btnBack" onclick="prevQ()">← Назад</button>
+      <button class="btn-next" id="btnNext" onclick="nextQ()">Далі →</button>
+    </div>
   </div>
+</div>
 
-  <div class="footer">
-    твій вулик чекає на тебе ♡
+<!-- ══ RESULT TYPE 1 ══ -->
+<div id="screenResult1" class="screen result-screen type1">
+  <div class="result-hero">
+    <div class="result-type-badge">Твій тип · Бджола без вулика</div>
+    <div class="result-bee">🐝</div>
+    <div class="result-title">Ти робиш багато.<br>Але не для себе.</div>
+    <p class="result-tagline">Є дія — але немає сенсу. Це не лінь. Це сигнал.</p>
   </div>
+  <div class="result-body">
 
+    <div class="result-card">
+      <div class="result-card-label">Що відбувається</div>
+      <p>Ти виконуєш, справляєшся, навіть отримуєш похвалу. Але десь всередині — <strong>відчуття що все це не зовсім твоє</strong>. Або не зовсім навіщо.</p>
+      <p>У психології це називається <strong>екзистенційний вакуум</strong> — стан коли є дія, але немає сенсу. Це не невдячність і не слабкість. Це точний сигнал про незбіг.</p>
+    </div>
+
+    <div class="result-card">
+      <div class="result-card-label">Що характерно для тебе</div>
+      <ul class="result-traits">
+        <li><span class="trait-dot"></span>Прокидаєшся з думкою "знову туди" — ще до того як встала</li>
+        <li><span class="trait-dot"></span>Важко відповісти навіщо ти це робиш — є "треба" але немає "хочу"</li>
+        <li><span class="trait-dot"></span>Після роботи — порожньо, навіть якщо день був продуктивним</li>
+        <li><span class="trait-dot"></span>Похвала не затримується — одразу думаєш про наступне завдання</li>
+      </ul>
+    </div>
+
+    <div class="risk-card">
+      <div class="result-card-label" style="color:var(--bordeaux);font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:8px;">Твій ризик</div>
+      <p><strong>Вигорання від відсутності сенсу</strong> — не від перевантаження. Це тихіше і небезпечніше. Тому що зовні все виглядає нормально.</p>
+    </div>
+
+    <!-- GIFT PRACTICE TYPE 1 -->
+    <div class="practice-gift">
+      <div class="gift-label">🎁 Практика для твого типу</div>
+      <div class="gift-title">"Одне що моє"</div>
+      <div class="gift-text">Одна мікродія яка повертає відчуття власного сенсу — навіть якщо зовні нічого не змінилось.</div>
+      <ul class="gift-steps">
+        <li>
+          <span class="gift-step-num">1</span>
+          <span>Запитай себе: <em>"Що в сьогоднішньому дні було хоч трохи моїм?"</em> Навіть найменше — розмова, рішення, момент.</span>
+        </li>
+        <li>
+          <span class="gift-step-num">2</span>
+          <span>Запиши одне слово або речення. Без аналізу — першe що прийде.</span>
+        </li>
+        <li>
+          <span class="gift-step-num">3</span>
+          <span>Скажи собі: <em>"Це моє. І цього достатньо на сьогодні."</em></span>
+        </li>
+      </ul>
+      <p style="font-size:12px;color:rgba(255,255,255,0.55);font-style:italic;position:relative;">Це одна з 44 практик GOODzik — простору самопідтримки від Інни Горковенко</p>
+    </div>
+
+    <!-- CTA -->
+    <div class="next-steps">
+      <div class="next-steps-eyebrow">Наступний крок</div>
+      <h3>Решта 43 практик — для підписників</h3>
+      <p>Підпишись на канал @innahorkovenko → отримай кодове слово → відкрий всі 44 практики безкоштовно.</p>
+      <a href="https://goodzik.netlify.app" class="btn-cta-white">Відкрити GOODzik → ввести "крокус"</a>
+      <a href="https://t.me/innahorkovenko" class="btn-cta-ghost">Підписатись на канал @innahorkovenko</a>
+    </div>
+
+    <div class="links-row">
+      <a href="https://t.me/innahorkovenko" class="link-card">
+        <div class="link-card-left">
+          <span class="link-card-icon">💙</span>
+          <div>
+            <div class="link-card-title">Хочеш розібратись глибше?</div>
+            <div class="link-card-sub">Консультація 1:1 · відповім особисто</div>
+          </div>
+        </div>
+        <span class="link-card-price">1500–2500 грн</span>
+      </a>
+      <a href="https://send.monobank.ua/jar/7gkus1s9LN" class="link-card">
+        <div class="link-card-left">
+          <span class="link-card-icon">🐝</span>
+          <div>
+            <div class="link-card-title">Курс "Знайди свій вулик"</div>
+            <div class="link-card-sub">6 модулів · від незрозумілості до ясності</div>
+          </div>
+        </div>
+        <span class="link-card-price">2500 грн</span>
+      </a>
+    </div>
+
+    <div class="retake-link">
+      <button onclick="retake()">Пройти тест ще раз</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ RESULT TYPE 2 ══ -->
+<div id="screenResult2" class="screen result-screen type2">
+  <div class="result-hero">
+    <div class="result-type-badge">Твій тип · Бджола в чужому вулику</div>
+    <div class="result-bee">🐝</div>
+    <div class="result-title">Все об'єктивно нормально.<br>Але суб'єктивно — ні.</div>
+    <p class="result-tagline">Є робота, зарплата, колектив. Але щось постійно не так — і тіло вже знає.</p>
+  </div>
+  <div class="result-body">
+
+    <div class="result-card">
+      <div class="result-card-label">Що відбувається</div>
+      <p>Це не криза і не катастрофа. Це <strong>конфлікт між "треба" і "хочу"</strong>. Між тим хто ти є — і середовищем де ти перебуваєш.</p>
+      <p>Ти можеш не мати слів для цього відчуття. Але воно є. І воно точне. <strong>Твоє тіло давно знає те, що розум ще боїться визнати.</strong></p>
+    </div>
+
+    <div class="result-card">
+      <div class="result-card-label">Що характерно для тебе</div>
+      <ul class="result-traits">
+        <li><span class="trait-dot"></span>Робота не погана — але не твоя. Є різниця і вона відчутна</li>
+        <li><span class="trait-dot"></span>П'ятниця — єдина справжня радість тижня</li>
+        <li><span class="trait-dot"></span>Є відчуття що час іде — а ти стоїш на місці</li>
+        <li><span class="trait-dot"></span>Думаєш про зміни — але страшно ризикнути стабільністю</li>
+      </ul>
+    </div>
+
+    <div class="risk-card">
+      <div class="result-card-label" style="color:var(--gold);font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:8px;">Твій ризик</div>
+      <p>Провести роки в <strong>"нормально"</strong> — і одного дня зрозуміти що "нормально" коштувало занадто дорого. Не фінансово. Особисто.</p>
+    </div>
+
+    <!-- GIFT PRACTICE TYPE 2 -->
+    <div class="practice-gift">
+      <div class="gift-label">🎁 Практика для твого типу</div>
+      <div class="gift-title">"Назви конкретно"</div>
+      <div class="gift-text">Від "щось не так" — до точного слова. Бо назвати — це вже половина шляху.</div>
+      <ul class="gift-steps">
+        <li>
+          <span class="gift-step-num">1</span>
+          <span>Запитай себе: <em>"Що саме не так?"</em> Не загально. А: яка цінність порушена? Де саме відчуваю що я не своя?</span>
+        </li>
+        <li>
+          <span class="gift-step-num">2</span>
+          <span>Запиши три слова — без редагування. Перші що прийшли.</span>
+        </li>
+        <li>
+          <span class="gift-step-num">3</span>
+          <span>Скажи: <em>"Я бачу це. Це не фантазія. Це моя реальність."</em></span>
+        </li>
+      </ul>
+      <p style="font-size:12px;color:rgba(255,255,255,0.55);font-style:italic;position:relative;">Це одна з 44 практик GOODzik — простору самопідтримки від Інни Горковенко</p>
+    </div>
+
+    <!-- CTA -->
+    <div class="next-steps">
+      <div class="next-steps-eyebrow">Наступний крок</div>
+      <h3>Решта 43 практик — для підписників</h3>
+      <p>Підпишись на канал @innahorkovenko → отримай кодове слово → відкрий всі 44 практики безкоштовно.</p>
+      <a href="https://goodzik.netlify.app" class="btn-cta-white">Відкрити GOODzik → ввести "крокус"</a>
+      <a href="https://t.me/innahorkovenko" class="btn-cta-ghost">Підписатись на канал @innahorkovenko</a>
+    </div>
+
+    <div class="links-row">
+      <a href="https://t.me/innahorkovenko" class="link-card">
+        <div class="link-card-left">
+          <span class="link-card-icon">💙</span>
+          <div>
+            <div class="link-card-title">Хочеш розібратись разом?</div>
+            <div class="link-card-sub">Консультація 1:1 · відповім особисто</div>
+          </div>
+        </div>
+        <span class="link-card-price">1500–2500 грн</span>
+      </a>
+      <a href="https://send.monobank.ua/jar/7gkus1s9LN" class="link-card">
+        <div class="link-card-left">
+          <span class="link-card-icon">🐝</span>
+          <div>
+            <div class="link-card-title">Курс "Знайди свій вулик"</div>
+            <div class="link-card-sub">6 модулів · від незрозумілості до ясності</div>
+          </div>
+        </div>
+        <span class="link-card-price">2500 грн</span>
+      </a>
+    </div>
+
+    <div class="retake-link">
+      <button onclick="retake()">Пройти тест ще раз</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ RESULT TYPE 3 ══ -->
+<div id="screenResult3" class="screen result-screen type3">
+  <div class="result-hero">
+    <div class="result-type-badge">Твій тип · Бджола у своєму вулику</div>
+    <div class="result-bee">🐝</div>
+    <div class="result-title">Втомлена — але наповнена.<br>Це рідкість.</div>
+    <p class="result-tagline">Ти вже знайшла своє місце. Тепер важливо його не втратити.</p>
+  </div>
+  <div class="result-body">
+
+    <div class="result-card">
+      <div class="result-card-label">Що відбувається</div>
+      <p>Ти повертаєшся — і хочеш повернутись. Не тому що мусиш, а тому що це <strong>твоє</strong>. У психології це стан потоку і узгодженості цінностей.</p>
+      <p><strong>Не щастя щохвилини — а правильність напрямку.</strong> Це коштує більше ніж будь-яке "все ок".</p>
+    </div>
+
+    <div class="result-card">
+      <div class="result-card-label">Що характерно для тебе</div>
+      <ul class="result-traits">
+        <li><span class="trait-dot"></span>Можеш пояснити навіщо ти це робиш — не з обов'язку, а з вибору</li>
+        <li><span class="trait-dot"></span>Помилки засмучують — але не руйнують. Ти знаєш що це процес</li>
+        <li><span class="trait-dot"></span>Часом не помічаєш часу на роботі — є стан потоку</li>
+        <li><span class="trait-dot"></span>Неділя ввечері не викликає жаху. Є навіть трохи нетерпіння</li>
+      </ul>
+    </div>
+
+    <div class="risk-card">
+      <div class="result-card-label" style="color:var(--teal);font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:8px;">Твій ризик</div>
+      <p><strong>Зупинитись. Заспокоїтись.</strong> І не помітити як поступово втрачаєш те що знайшла. Знайти свій вулик — ще не кінець. Це початок глибшої роботи.</p>
+    </div>
+
+    <!-- GIFT PRACTICE TYPE 3 -->
+    <div class="practice-gift">
+      <div class="gift-label">🎁 Практика для твого типу</div>
+      <div class="gift-title">"Наступний рівень"</div>
+      <div class="gift-text">Ти вже у своєму вулику. Тепер — поглиблення, а не пошук.</div>
+      <ul class="gift-steps">
+        <li>
+          <span class="gift-step-num">1</span>
+          <span>Запитай: <em>"Що в моїй роботі я ще не розкрила повністю?"</em> Яка сфера залишається нерозвиненою?</span>
+        </li>
+        <li>
+          <span class="gift-step-num">2</span>
+          <span>Запитай: <em>"Хто міг би вчитись у мене?"</em> — це підкаже де твій наступний рівень.</span>
+        </li>
+        <li>
+          <span class="gift-step-num">3</span>
+          <span>Запиши одну дію яка веде туди. Не план — одну дію. До кінця тижня.</span>
+        </li>
+      </ul>
+      <p style="font-size:12px;color:rgba(255,255,255,0.55);font-style:italic;position:relative;">Це одна з 44 практик GOODzik — простору самопідтримки від Інни Горковенко</p>
+    </div>
+
+    <!-- CTA -->
+    <div class="next-steps">
+      <div class="next-steps-eyebrow">Наступний крок</div>
+      <h3>Решта 43 практик — для підписників</h3>
+      <p>Підпишись на канал @innahorkovenko → отримай кодове слово → відкрий всі 44 практики безкоштовно.</p>
+      <a href="https://goodzik.netlify.app" class="btn-cta-white">Відкрити GOODzik → ввести "крокус"</a>
+      <a href="https://t.me/innahorkovenko" class="btn-cta-ghost">Підписатись на канал @innahorkovenko</a>
+    </div>
+
+    <div class="links-row">
+      <a href="https://send.monobank.ua/jar/7gkus1s9LN" class="link-card">
+        <div class="link-card-left">
+          <span class="link-card-icon">🐝</span>
+          <div>
+            <div class="link-card-title">Курс "Знайди свій вулик"</div>
+            <div class="link-card-sub">Поглиб те що знайшла · 6 модулів</div>
+          </div>
+        </div>
+        <span class="link-card-price">2500 грн</span>
+      </a>
+      <a href="https://t.me/innahorkovenko" class="link-card">
+        <div class="link-card-left">
+          <span class="link-card-icon">💙</span>
+          <div>
+            <div class="link-card-title">Консультація 1:1</div>
+            <div class="link-card-sub">Наступний рівень разом з Інною</div>
+          </div>
+        </div>
+        <span class="link-card-price">1500–2500 грн</span>
+      </a>
+    </div>
+
+    <div class="retake-link">
+      <button onclick="retake()">Пройти тест ще раз</button>
+    </div>
+  </div>
 </div>
 
 <script>
-const questions = [
+// ══════════════════════════════
+// QUESTIONS
+// ══════════════════════════════
+const QUESTIONS = [
   {
-    text: "Неділя ввечері. Що ти відчуваєш коли думаєш про завтрашній день?",
+    id: 1, part: 'Частина 1', type: 'choice',
+    text: 'Як ти зазвичай прокидаєшся у будній день?',
     options: [
-      { text: "Тривога — і я не розумію чому", type: "A" },
-      { text: "Просто порожньо. Ні так ні сяк", type: "B" },
-      { text: "Легка втома але готова йти", type: "C" },
-      { text: "Взагалі намагаюсь не думати", type: "A" }
+      { label: 'А', text: '«Знову туди» — до того як встала з ліжка', score: [1,0,0] },
+      { label: 'Б', text: 'Нейтрально. Ні радості ні жаху. Просто черговий день', score: [0,1,0] },
+      { label: 'В', text: 'Є відчуття що попереду щось важливе — навіть якщо втомлена', score: [0,0,1] },
     ]
   },
   {
-    text: "Коли тебе хвалять на роботі — що відчуваєш?",
+    id: 2, part: 'Частина 1', type: 'choice',
+    text: 'Як ти себе відчуваєш наприкінці робочого дня?',
     options: [
-      { text: "Приємно але якось порожньо всередині", type: "A" },
-      { text: "Думаю: 'Та за що? Це ж нічого особливого'", type: "B" },
-      { text: "Щиро радію — бо знаю що зробила добре", type: "C" },
-      { text: "Підозрюю що чогось хочуть натомість", type: "B" }
+      { label: 'А', text: 'Порожня. Ніби віддала все — але незрозуміло кому і навіщо', score: [1,0,0] },
+      { label: 'Б', text: 'Втомлена і трохи роздратована. Щось не так — але складно назвати що', score: [0,1,0] },
+      { label: 'В', text: 'Втомлена — але є відчуття що зробила щось важливе', score: [0,0,1] },
     ]
   },
   {
-    text: "Як ти описала б свою роботу найближчій подрузі?",
+    id: 3, part: 'Частина 1', type: 'choice',
+    text: 'Коли тебе хвалять на роботі — що відчуваєш?',
     options: [
-      { text: "Нормально. Гірше буває", type: "B" },
-      { text: "Багато роблю але не розумію навіщо", type: "A" },
-      { text: "Складно але цікаво — є куди рости", type: "C" },
-      { text: "Чесно? Не моє. Але поки що тут", type: "B" }
+      { label: 'А', text: 'Приємно — але одразу думаєш про наступне. Відпочити ніколи', score: [1,0,0] },
+      { label: 'Б', text: 'Трохи дивно. Ніби похвала не зовсім за твоє — за чуже', score: [0,1,0] },
+      { label: 'В', text: 'Справжнє задоволення. Тому що ця робота дійсно твоя', score: [0,0,1] },
     ]
   },
   {
-    text: "Ти думаєш про зміну роботи або сфери?",
+    id: 4, part: 'Частина 2', type: 'scale',
+    text: 'Як ти ставишся до понеділка?',
+    scaleMin: 'жах і відчай', scaleMax: 'нормально або навіть добре',
+    scores: [[1,0,0],[1,0,0],[0,1,0],[0,0,1],[0,0,1]]
+  },
+  {
+    id: 5, part: 'Частина 3', type: 'choice',
+    text: 'Коли тобі дають завдання яке здається безглуздим — ти:',
     options: [
-      { text: "Постійно але не наважуюсь", type: "B" },
-      { text: "Думаю але не знаю чого хочу натомість", type: "A" },
-      { text: "Ні — мені тут добре або я вже міняю", type: "C" },
-      { text: "Так і вже майже вирішила", type: "B" }
+      { label: 'А', text: 'Робиш мовчки. Питання «навіщо?» навіть не виникає — так треба', score: [1,0,0] },
+      { label: 'Б', text: 'Робиш, але відчуваєш роздратування. Міркуєш що тут не так', score: [0,1,0] },
+      { label: 'В', text: 'Уточнюєш навіщо це. Або пропонуєш альтернативу', score: [0,0,1] },
     ]
   },
   {
-    text: "Як ти відновлюєшся після робочого тижня?",
+    id: 6, part: 'Частина 3', type: 'choice',
+    text: "П'ятниця о 17:00 — що відчуваєш?",
     options: [
-      { text: "Довго — і все одно не відпочиваю", type: "A" },
-      { text: "Намагаюсь не думати про роботу взагалі", type: "B" },
-      { text: "Відпочиваю і хочу повернутись", type: "C" },
-      { text: "Який відпочинок — я завжди на зв'язку", type: "A" }
+      { label: 'А', text: 'Нарешті. Два дні спокою від всього цього', score: [1,0,0] },
+      { label: 'Б', text: 'Полегшення — але й тривога що в понеділок знову повернеться', score: [0,1,0] },
+      { label: 'В', text: 'Задоволення від тижня. Вихідні — для відновлення, не для втечі', score: [0,0,1] },
     ]
   },
   {
-    text: "Коли ти думаєш про свою роботу за 5 років — що бачиш?",
+    id: 7, part: 'Частина 2', type: 'scale',
+    text: 'Як часто ти буваєш у стані «потоку» — коли не помічаєш часу на роботі?',
+    scaleMin: 'майже ніколи', scaleMax: 'регулярно',
+    scores: [[1,0,0],[1,0,0],[0,1,0],[0,0,1],[0,0,1]]
+  },
+  {
+    id: 8, part: 'Частина 4', type: 'yesno',
+    text: 'Я часто погоджуюсь на додаткову роботу навіть коли вже на межі',
+    yesScore: [1,1,0], noScore: [0,0,1]
+  },
+  {
+    id: 9, part: 'Частина 4', type: 'yesno',
+    text: 'Я рідко можу чітко відповісти навіщо я роблю те що роблю',
+    yesScore: [1,0,0], noScore: [0,0,1]
+  },
+  {
+    id: 10, part: 'Частина 4', type: 'yesno',
+    text: 'Коли колеги халтурять або байдужіють — я відчуваю сильне роздратування',
+    yesScore: [0,1,0], noScore: [1,0,0]
+  },
+  {
+    id: 11, part: 'Частина 4', type: 'yesno',
+    text: 'Відпустка — це для мене справжній відпочинок, а не тривожне очікування повернення',
+    yesScore: [0,0,1], noScore: [1,0,0]
+  },
+  {
+    id: 12, part: 'Частина 2', type: 'scale',
+    text: 'Наскільки те що ти робиш має для тебе особистий сенс?',
+    scaleMin: 'зовсім не має', scaleMax: 'глибоко важливо',
+    scores: [[1,0,0],[1,0,0],[0,1,0],[0,0,1],[0,0,1]]
+  },
+  {
+    id: 13, part: 'Частина 5', type: 'choice',
+    text: 'Якби ти могла звільнитись без фінансових наслідків — що б відчула?',
     options: [
-      { text: "Туман. Не можу уявити", type: "A" },
-      { text: "Те саме що зараз — і це лякає", type: "B" },
-      { text: "Ріст у своїй сфері або свій проєкт", type: "C" },
-      { text: "Хочу геть іншого але не знаю що", type: "B" }
+      { label: 'А', text: 'Полегшення. Нарешті можна зупинитись і подихати', score: [1,0,0] },
+      { label: 'Б', text: 'Суміш полегшення і тривоги. Тут погано — але що буде далі?', score: [0,1,0] },
+      { label: 'В', text: 'Я б залишилась. Або знайшла б щось схоже але краще', score: [0,0,1] },
     ]
   },
   {
-    text: "Твої колеги на роботі — це...",
+    id: 14, part: 'Частина 5', type: 'choice',
+    text: 'Коли ти думаєш про нову роботу — яка перша реакція?',
     options: [
-      { text: "Просто люди з якими я проводжу час", type: "B" },
-      { text: "Люди яким я намагаюсь відповідати", type: "A" },
-      { text: "Частина того чому мені тут добре", type: "C" },
-      { text: "Чужі люди в чужому місці", type: "B" }
+      { label: 'А', text: 'Хочу — але не знаю що саме шукати. Не розумію чого хочу', score: [1,0,0] },
+      { label: 'Б', text: 'Знаю що хочу інше — але страшно ризикнути тим що є', score: [0,1,0] },
+      { label: 'В', text: 'Якщо і шукаю — то розвиток і більше свого. Не втечу від поганого', score: [0,0,1] },
     ]
   },
   {
-    text: "Що для тебе найважче у роботі прямо зараз?",
+    id: 15, part: 'Частина 5', type: 'choice',
+    text: 'Уяви себе через рік на тій самій роботі. Що відчуваєш?',
     options: [
-      { text: "Відчуття що роблю але нічого не змінюється", type: "A" },
-      { text: "Те що це взагалі не моє", type: "B" },
-      { text: "Конкретні задачі — але я справляюсь", type: "C" },
-      { text: "Постійна тривога що щось йде не так", type: "A" }
-    ]
-  },
-  {
-    text: "Якщо уявити роботу як дім — де ти зараз?",
-    options: [
-      { text: "В чужому домі. Поводжусь ввічливо але хочу додому", type: "B" },
-      { text: "В домі без вікон. Є стіни але незрозуміло навіщо", type: "A" },
-      { text: "Вдома. Не ідеально але моє", type: "C" },
-      { text: "На вулиці — ще шукаю куди зайти", type: "A" }
-    ]
-  },
-  {
-    text: "Що ти відчуваєш після того як завершила складний проєкт?",
-    options: [
-      { text: "Полегшення що скінчилось — і все", type: "B" },
-      { text: "Втому і питання: навіщо це все?", type: "A" },
-      { text: "Гордість і бажання братись за наступне", type: "C" },
-      { text: "Тривогу — бо зараз дадуть ще більше", type: "A" }
+      { label: 'А', text: 'Страх і втома від однієї лише думки', score: [1,0,0] },
+      { label: 'Б', text: 'Тривога. Ніби час йде — а я стою на місці', score: [0,1,0] },
+      { label: 'В', text: 'Ймовірно добре — якщо буде розвиток і виклики', score: [0,0,1] },
     ]
   }
 ];
 
-const results = {
-  A: {
-    bee: "🐝",
-    type: "Тип 1",
-    title: "Бджола без вулика",
-    description: "Ти працюєш багато і віддаєш себе повністю. Але десь всередині є відчуття порожнечі — ніби крутишся але не розумієш навіщо. Втома накопичується. Мотивація зникає. І навіть успіхи не радують так як мали б.",
-    insight: "У психології це називається екзистенційний вакуум — є дії, але немає сенсу. Це не слабкість і не лінь. Це сигнал що твоя робота поки що не пов'язана з тим що для тебе справді важливо.",
-    ctaTitle: "Знайдемо твій вулик разом",
-    ctaText: "На консультації ми розберемо що забирає твою енергію і знайдемо де твій справжній напрямок. Без загальних порад — тільки конкретна робота з твоєю ситуацією."
-  },
-  B: {
-    bee: "🐝",
-    type: "Тип 2",
-    title: "Бджола в чужому вулику",
-    description: "Все об'єктивно нормально. Зарплата є, колеги нормальні, скаржитись нема на що. Але суб'єктивно — щось постійно не так. Це відчуття що ти не на своєму місці — і воно не проходить.",
-    insight: "У психології це конфлікт між 'треба' і 'хочу'. Тіло вже знає що це не твоє — і дає сигнали. Голова ще сперечається і знаходить причини залишатись. Це найнебезпечніший стан — бо болю особливого немає, але і радості теж.",
-    ctaTitle: "Час повернутись до себе",
-    ctaText: "На консультації ми розберемо чому ти опинилась тут і що насправді є твоїм. Не 'що модно' і не 'що добре оплачується' — а що твоє."
-  },
-  C: {
-    bee: "🐝",
-    type: "Тип 3",
-    title: "Бджола у своєму вулику",
-    description: "Ти втомлюєшся — але правильною втомою. Повертаєшся — і хочеш повернутись. Є труднощі, але є і відчуття що ти на своєму місці. Це не ідеально — але це твоє.",
-    insight: "У психології це стан потоку і узгодженості цінностей. Не щастя щохвилини — а правильність напрямку. Ти вже в своєму вулику. Питання — як зробити його ще більш своїм і не загубити це відчуття.",
-    ctaTitle: "Поглибимо те що вже працює",
-    ctaText: "На консультації ми подивимось як зберегти і розвинути те що у тебе вже є — щоб не вигоріти і продовжувати рости у своєму напрямку."
-  }
-};
+// ══════════════════════════════
+// STATE
+// ══════════════════════════════
+let current = 0;
+let answers = new Array(QUESTIONS.length).fill(null);
+let scores = [0, 0, 0]; // type1, type2, type3
 
-let currentQuestion = 0;
-let scores = { A: 0, B: 0, C: 0 };
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0, 0);
+}
 
 function startQuiz() {
-  document.getElementById('startCard').classList.add('hidden');
-  document.getElementById('progressSection').classList.remove('hidden');
-  document.getElementById('questionCard').classList.remove('hidden');
-  buildDots();
-  showQuestion();
+  current = 0;
+  answers = new Array(QUESTIONS.length).fill(null);
+  scores = [0, 0, 0];
+  renderQuestion();
+  showScreen('screenQuiz');
 }
 
-function buildDots() {
-  const container = document.getElementById('scoreDots');
-  container.innerHTML = '';
-  for (let i = 0; i < questions.length; i++) {
-    const dot = document.createElement('div');
-    dot.className = 'score-dot';
-    dot.id = `dot-${i}`;
-    container.appendChild(dot);
+function renderQuestion() {
+  const q = QUESTIONS[current];
+  const total = QUESTIONS.length;
+
+  document.getElementById('progressText').textContent = `${current + 1} з ${total}`;
+  document.getElementById('progressFill').style.width = `${((current + 1) / total) * 100}%`;
+  document.getElementById('btnBack').style.visibility = current === 0 ? 'hidden' : 'visible';
+
+  const btnNext = document.getElementById('btnNext');
+  btnNext.textContent = current === total - 1 ? 'Отримати результат →' : 'Далі →';
+  btnNext.classList.remove('ready');
+
+  let html = `<div class="question-block">
+    <div class="q-part-label">${q.part}</div>
+    <div class="q-num">Запитання ${q.id}</div>
+    <div class="q-text">${q.text}</div>`;
+
+  if (q.type === 'choice') {
+    html += `<div class="options">`;
+    q.options.forEach((opt, i) => {
+      const sel = answers[current] === i ? 'selected' : '';
+      html += `<button class="option-btn ${sel}" onclick="selectChoice(${i})">
+        <span class="option-letter">${opt.label}</span>
+        <span>${opt.text}</span>
+      </button>`;
+    });
+    html += `</div>`;
+  } else if (q.type === 'scale') {
+    html += `<div class="scale-wrap">
+      <div class="scale-labels">
+        <span>${q.scaleMin}</span>
+        <span>${q.scaleMax}</span>
+      </div>
+      <div class="scale-btns">`;
+    for (let v = 1; v <= 5; v++) {
+      const sel = answers[current] === v ? 'selected' : '';
+      html += `<button class="scale-btn ${sel}" onclick="selectScale(${v})">${v}</button>`;
+    }
+    html += `</div></div>`;
+  } else if (q.type === 'yesno') {
+    const selY = answers[current] === 'yes' ? 'selected' : '';
+    const selN = answers[current] === 'no' ? 'selected' : '';
+    html += `<div class="yesno-wrap">
+      <button class="yesno-btn ${selY}" onclick="selectYesNo('yes')">Так</button>
+      <button class="yesno-btn ${selN}" onclick="selectYesNo('no')">Ні</button>
+    </div>`;
+  }
+
+  html += `</div>`;
+  document.getElementById('questionContainer').innerHTML = html;
+
+  if (answers[current] !== null) {
+    document.getElementById('btnNext').classList.add('ready');
   }
 }
 
-function updateDots() {
-  for (let i = 0; i < questions.length; i++) {
-    const dot = document.getElementById(`dot-${i}`);
-    if (i < currentQuestion) dot.className = 'score-dot filled';
-    else if (i === currentQuestion) dot.className = 'score-dot active';
-    else dot.className = 'score-dot';
+function selectChoice(idx) {
+  answers[current] = idx;
+  document.querySelectorAll('.option-btn').forEach((b, i) => {
+    b.classList.toggle('selected', i === idx);
+  });
+  document.getElementById('btnNext').classList.add('ready');
+}
+
+function selectScale(val) {
+  answers[current] = val;
+  document.querySelectorAll('.scale-btn').forEach((b, i) => {
+    b.classList.toggle('selected', i + 1 === val);
+  });
+  document.getElementById('btnNext').classList.add('ready');
+}
+
+function selectYesNo(val) {
+  answers[current] = val;
+  document.querySelectorAll('.yesno-btn').forEach(b => b.classList.remove('selected'));
+  event.target.classList.add('selected');
+  document.getElementById('btnNext').classList.add('ready');
+}
+
+function nextQ() {
+  if (answers[current] === null) return;
+  // Advance
+  current++;
+  if (current >= QUESTIONS.length) {
+    calculateResult();
+  } else {
+    renderQuestion();
   }
 }
 
-function showQuestion() {
-  const q = questions[currentQuestion];
-  document.getElementById('questionText').textContent = q.text;
+function prevQ() {
+  if (current > 0) { current--; renderQuestion(); }
+}
 
-  const container = document.getElementById('optionsContainer');
-  container.innerHTML = '';
-  q.options.forEach((opt, i) => {
-    const btn = document.createElement('button');
-    btn.className = 'option';
-    btn.textContent = opt.text;
-    btn.onclick = () => selectOption(opt.type, btn);
-    container.appendChild(btn);
+function calculateResult() {
+  scores = [0, 0, 0];
+  QUESTIONS.forEach((q, i) => {
+    const ans = answers[i];
+    let s = [0, 0, 0];
+    if (q.type === 'choice') s = q.options[ans].score;
+    else if (q.type === 'scale') s = q.scores[ans - 1];
+    else if (q.type === 'yesno') s = ans === 'yes' ? q.yesScore : q.noScore;
+    scores[0] += s[0]; scores[1] += s[1]; scores[2] += s[2];
   });
 
-  const pct = Math.round((currentQuestion / questions.length) * 100);
-  document.getElementById('progressLabel').textContent = `Питання ${currentQuestion + 1} з ${questions.length}`;
-  document.getElementById('progressPercent').textContent = pct + '%';
-  document.getElementById('progressFill').style.width = pct + '%';
-
-  updateDots();
-
-  const card = document.getElementById('questionCard');
-  card.classList.remove('fade-in');
-  void card.offsetWidth;
-  card.classList.add('fade-in');
+  const max = Math.max(...scores);
+  const type = scores.indexOf(max) + 1;
+  showScreen('screenResult' + type);
 }
 
-function selectOption(type, btn) {
-  document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
-  btn.classList.add('selected');
-
-  setTimeout(() => {
-    scores[type]++;
-    currentQuestion++;
-
-    if (currentQuestion < questions.length) {
-      showQuestion();
-    } else {
-      showResult();
-    }
-  }, 400);
-}
-
-function showResult() {
-  document.getElementById('questionCard').classList.add('hidden');
-  document.getElementById('progressSection').classList.add('hidden');
-  document.getElementById('headerSection').classList.add('hidden');
-
-  const topType = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
-  const r = results[topType];
-
-  document.getElementById('resultBee').textContent = r.bee;
-  document.getElementById('resultType').textContent = r.type;
-  document.getElementById('resultTitle').textContent = r.title;
-  document.getElementById('resultDescription').textContent = r.description;
-  document.getElementById('resultInsight').textContent = r.insight;
-  document.getElementById('ctaTitle').textContent = r.ctaTitle;
-  document.getElementById('ctaText').textContent = r.ctaText;
-
-  const resultCard = document.getElementById('resultCard');
-  resultCard.classList.add('show', 'fade-in');
-
-  document.getElementById('progressFill').style.width = '100%';
-}
-
-function restartQuiz() {
-  currentQuestion = 0;
-  scores = { A: 0, B: 0, C: 0 };
-
-  document.getElementById('resultCard').classList.remove('show');
-  document.getElementById('headerSection').classList.remove('hidden');
-  document.getElementById('startCard').classList.remove('hidden');
+function retake() {
+  showScreen('screenIntro');
 }
 </script>
 </body>
