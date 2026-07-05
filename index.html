@@ -153,8 +153,11 @@
   }
 
   .link-btn.primary .link-sub { color: rgba(255,255,255,0.7); }
-  .arrow { font-size: 16px; color: var(--muted); flex-shrink: 0; }
-  .link-btn.primary .arrow { color: rgba(255,255,255,0.7); }
+  .arrow { font-size: 18px; color: white; flex-shrink: 0; background: var(--blue); width: 32px; height: 32px;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700;
+    transition: transform 0.2s ease; }
+  .link-btn:hover .arrow { transform: translateX(3px); }
+  .link-btn.primary .arrow { color: var(--blue); background: white; }
 
   .badge {
     font-size: 10px;
@@ -409,43 +412,6 @@
     <div class="tagline">Не вирок і не виправдання.<br><em>Просто чесний погляд на себе - і крок.</em></div>
   </div>
 
-  <!-- ПЕРШИЙ КРОК -->
-  <div class="fade-up d3">
-    <div class="section-label">Почни тут</div>
-    <div class="links">
-      <a href="https://horkovenkoi-sketch.github.io/vulyk-test/vulyk-test.html" class="link-btn">
-        <div class="link-left">
-          <span class="link-icon">🐝</span>
-          <div>
-            Пройди тест "Який ти тип бджоли?"
-            <div class="link-sub" style="color:rgba(255,255,255,0.7);">Дізнайся де ти зараз - за 10 хвилин · 3 типи результату</div>
-          </div>
-        </div>
-        <span class="arrow" style="color:rgba(255,255,255,0.7);">→</span>
-      </a>
-      <a href="https://ofis.goodzik.net" class="link-btn">
-        <div class="link-left">
-          <span class="link-icon">🪞</span>
-          <div>
-            Внутрішній офіс
-            <div class="link-sub">Інтерактивний практикум · 4 хвилини на день</div>
-          </div>
-        </div>
-        <span class="arrow">→</span>
-      </a>
-      <a href="https://goodzik.net" class="link-btn">
-        <div class="link-left">
-          <span class="link-icon">🧵</span>
-          <div>
-            GOODzik · повернись до себе за 2 хвилини
-            <div class="link-sub">44 практики · безкоштовно для підписників</div>
-          </div>
-        </div>
-        <span class="arrow">→</span>
-      </a>
-    </div>
-  </div>
-
   <div class="divider"></div>
 
   <!-- ПРО МЕНЕ - ОДНЕ РЕЧЕННЯ -->
@@ -460,8 +426,72 @@
 
   <div class="divider"></div>
 
-  <!-- ВІДГУКИ - ДВА НАЙСИЛЬНІШІ -->
+  <!-- ТРЕК 1: ОСОБИСТЕ — ҐУДЗИК -->
   <div class="fade-up d5">
+    <div class="section-label">Особисте · практики та звички</div>
+    <div class="links">
+      <a href="https://tviy.goodzik.net" class="link-btn">
+        <div class="link-left">
+          <span class="link-icon">🔘</span>
+          <div>
+            Ґудзик-підбір
+            <div class="link-sub">Практика чи звичка з GOODzik саме під твій стан</div>
+          </div>
+        </div>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ТРЕК 2: ПРОФЕСІЙНЕ ЖИТТЯ — ВУЛИК -->
+  <div class="fade-up d6">
+    <div class="section-label">Професійне життя</div>
+    <div class="links">
+      <a href="https://horkovenkoi-sketch.github.io/vulyk-test/vulyk-test.html" class="link-btn">
+        <div class="link-left">
+          <span class="link-icon">🐝</span>
+          <div>
+            Пройди тест "Який ти тип бджоли?"
+            <div class="link-sub">Дізнайся де ти зараз - за 10 хвилин · 3 типи результату</div>
+          </div>
+        </div>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- TELEGRAM: СПІЛЬНИЙ КАНАЛ ДЛЯ ОБОХ ТРЕКІВ -->
+  <div class="fade-up d8">
+    <div class="tg-card">
+      <svg width="160" height="140" viewBox="0 0 160 140" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block; margin: 0 auto 4px;">
+        <ellipse cx="80" cy="105" rx="52" ry="10" fill="rgba(255,255,255,0.15)"/>
+        <g transform="translate(25, 78)"><path d="M15 0 L25 -8 L35 0 L35 14 L25 22 L15 14 Z" fill="rgba(255,255,255,0.25)" stroke="rgba(255,255,255,0.5)" stroke-width="1"/><path d="M35 0 L45 -8 L55 0 L55 14 L45 22 L35 14 Z" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.5)" stroke-width="1"/><path d="M55 0 L65 -8 L75 0 L75 14 L65 22 L55 14 Z" fill="rgba(255,255,255,0.25)" stroke="rgba(255,255,255,0.5)" stroke-width="1"/><path d="M75 0 L85 -8 L95 0 L95 14 L85 22 L75 14 Z" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.5)" stroke-width="1"/></g>
+        <g transform="translate(35, 56)"><path d="M15 0 L25 -8 L35 0 L35 14 L25 22 L15 14 Z" fill="rgba(255,255,255,0.3)" stroke="rgba(255,255,255,0.6)" stroke-width="1"/><path d="M35 0 L45 -8 L55 0 L55 14 L45 22 L35 14 Z" fill="rgba(255,255,255,0.35)" stroke="rgba(255,255,255,0.6)" stroke-width="1"/><path d="M55 0 L65 -8 L75 0 L75 14 L65 22 L55 14 Z" fill="rgba(255,255,255,0.3)" stroke="rgba(255,255,255,0.6)" stroke-width="1"/></g>
+        <g transform="translate(45, 34)"><path d="M15 0 L25 -8 L35 0 L35 14 L25 22 L15 14 Z" fill="rgba(255,255,255,0.4)" stroke="rgba(255,255,255,0.7)" stroke-width="1"/><path d="M35 0 L45 -8 L55 0 L55 14 L45 22 L35 14 Z" fill="rgba(255,255,255,0.4)" stroke="rgba(255,255,255,0.7)" stroke-width="1"/></g>
+        <ellipse cx="58" cy="100" rx="3" ry="4" fill="rgba(255,220,100,0.7)"/>
+        <ellipse cx="80" cy="103" rx="3" ry="4" fill="rgba(255,220,100,0.7)"/>
+        <ellipse cx="102" cy="100" rx="3" ry="4" fill="rgba(255,220,100,0.7)"/>
+        <g transform="translate(18, 50)"><ellipse cx="8" cy="8" rx="6" ry="5" fill="rgba(255,220,50,0.9)"/><line x1="4" y1="6" x2="4" y2="10" stroke="#3D3D8F" stroke-width="1.5"/><line x1="8" y1="5" x2="8" y2="11" stroke="#3D3D8F" stroke-width="1.5"/><line x1="12" y1="6" x2="12" y2="10" stroke="#3D3D8F" stroke-width="1.5"/></g>
+        <g transform="translate(126, 42)"><ellipse cx="8" cy="8" rx="6" ry="5" fill="rgba(255,220,50,0.9)"/><line x1="4" y1="6" x2="4" y2="10" stroke="#3D3D8F" stroke-width="1.5"/><line x1="8" y1="5" x2="8" y2="11" stroke="#3D3D8F" stroke-width="1.5"/><line x1="12" y1="6" x2="12" y2="10" stroke="#3D3D8F" stroke-width="1.5"/></g>
+      </svg>
+      <div style="display:inline-flex;align-items:center;gap:6px;background:white;border-radius:20px;padding:5px 14px;margin-bottom:12px;">
+        <span style="font-size:13px;">✈️</span>
+        <span style="font-size:11px;color:#3D3D8F;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;">Telegram канал</span>
+      </div>
+      <h3 class="tg-title">Практики і психологія професійного життя</h3>
+      <p class="tg-desc">Щотижня про роботу яка або наповнює або забирає — і про чесний погляд на себе між справами · @innahorkovenko</p>
+      <a href="https://t.me/innahorkovenko" class="btn-tg">Підписатись →</a>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ВІДГУКИ - ДВА НАЙСИЛЬНІШІ -->
+  <div class="fade-up d7">
     <div class="section-label">Що кажуть клієнти</div>
     <div class="reviews">
       <div class="review-card">
@@ -478,7 +508,7 @@
   <div class="divider"></div>
 
   <!-- КОНСУЛЬТАЦІЯ -->
-  <div class="fade-up d6">
+  <div class="fade-up d8">
     <div class="section-label">Індивідуальна консультація</div>
     <div class="consult-card">
       <h2 class="consult-title">Твій наступний крок зі мною</h2>
@@ -497,94 +527,12 @@
 
   <div class="divider"></div>
 
-  <!-- ПРОДУКТИ -->
-  <div class="fade-up d7">
-    <div class="section-label">Продукти</div>
-    <div class="links">
-      <a href="https://vulik.goodzik.net" class="link-btn">
-        <div class="link-left">
-          <span class="link-icon">🐝</span>
-          <div>
-            Курс "Знайди свій вулик"
-            <div class="link-sub">6 модулів · відео · книга</div>
-          </div>
-        </div>
-        <div style="text-align:right;flex-shrink:0;">
-          <div style="font-size:13px;font-weight:700;color:var(--blue);">1800 грн</div>
-        </div>
-      </a>
-      <a href="https://zvychkogra.goodzik.net" class="link-btn">
-        <div class="link-left">
-          <span class="link-icon">🎮</span>
-          <div>
-            ЗвичкоГра
-            <div class="link-sub">14 звичок · інтерактивний практикум</div>
-          </div>
-        </div>
-        <span style="font-size:13px;font-weight:700;color:var(--blue);white-space:nowrap;">500 грн</span>
-      </a>
-      <a href="https://goodzik.net" class="link-btn">
-        <div class="link-left">
-          <span class="link-icon">🧵</span>
-          <div>
-            GOODzik · 44 практики
-            <div class="link-sub">Для підписників @innahorkovenko</div>
-          </div>
-        </div>
-        <span style="font-size:13px;font-weight:600;color:#aaa;white-space:nowrap;">безкоштовно</span>
-      </a>
-      <a href="https://ofis.goodzik.net" class="link-btn">
-        <div class="link-left">
-          <span class="link-icon">🪞</span>
-          <div>
-            Внутрішній офіс
-            <div class="link-sub">Інтерактивний практикум · 4 хвилини на день</div>
-          </div>
-        </div>
-        <span style="font-size:13px;font-weight:600;color:#aaa;white-space:nowrap;">новинка</span>
-      </a>
-    </div>
-  </div>
-
-  <div class="divider"></div>
-
-  <!-- TELEGRAM -->
-  <div class="fade-up d8">
-    <div class="tg-card">
-      <svg width="160" height="140" viewBox="0 0 160 140" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block; margin: 0 auto 4px;">
-        <ellipse cx="80" cy="105" rx="52" ry="10" fill="rgba(255,255,255,0.15)"/>
-        <g transform="translate(25, 78)"><path d="M15 0 L25 -8 L35 0 L35 14 L25 22 L15 14 Z" fill="rgba(255,255,255,0.25)" stroke="rgba(255,255,255,0.5)" stroke-width="1"/><path d="M35 0 L45 -8 L55 0 L55 14 L45 22 L35 14 Z" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.5)" stroke-width="1"/><path d="M55 0 L65 -8 L75 0 L75 14 L65 22 L55 14 Z" fill="rgba(255,255,255,0.25)" stroke="rgba(255,255,255,0.5)" stroke-width="1"/><path d="M75 0 L85 -8 L95 0 L95 14 L85 22 L75 14 Z" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.5)" stroke-width="1"/></g>
-        <g transform="translate(35, 56)"><path d="M15 0 L25 -8 L35 0 L35 14 L25 22 L15 14 Z" fill="rgba(255,255,255,0.3)" stroke="rgba(255,255,255,0.6)" stroke-width="1"/><path d="M35 0 L45 -8 L55 0 L55 14 L45 22 L35 14 Z" fill="rgba(255,255,255,0.35)" stroke="rgba(255,255,255,0.6)" stroke-width="1"/><path d="M55 0 L65 -8 L75 0 L75 14 L65 22 L55 14 Z" fill="rgba(255,255,255,0.3)" stroke="rgba(255,255,255,0.6)" stroke-width="1"/></g>
-        <g transform="translate(45, 34)"><path d="M15 0 L25 -8 L35 0 L35 14 L25 22 L15 14 Z" fill="rgba(255,255,255,0.4)" stroke="rgba(255,255,255,0.7)" stroke-width="1"/><path d="M35 0 L45 -8 L55 0 L55 14 L45 22 L35 14 Z" fill="rgba(255,255,255,0.4)" stroke="rgba(255,255,255,0.7)" stroke-width="1"/></g>
-        <ellipse cx="58" cy="100" rx="3" ry="4" fill="rgba(255,220,100,0.7)"/>
-        <ellipse cx="80" cy="103" rx="3" ry="4" fill="rgba(255,220,100,0.7)"/>
-        <ellipse cx="102" cy="100" rx="3" ry="4" fill="rgba(255,220,100,0.7)"/>
-        <g transform="translate(18, 50)"><ellipse cx="8" cy="8" rx="6" ry="5" fill="rgba(255,220,50,0.9)"/><line x1="4" y1="6" x2="4" y2="10" stroke="#3D3D8F" stroke-width="1.5"/><line x1="8" y1="5" x2="8" y2="11" stroke="#3D3D8F" stroke-width="1.5"/><line x1="12" y1="6" x2="12" y2="10" stroke="#3D3D8F" stroke-width="1.5"/></g>
-        <g transform="translate(126, 42)"><ellipse cx="8" cy="8" rx="6" ry="5" fill="rgba(255,220,50,0.9)"/><line x1="4" y1="6" x2="4" y2="10" stroke="#3D3D8F" stroke-width="1.5"/><line x1="8" y1="5" x2="8" y2="11" stroke="#3D3D8F" stroke-width="1.5"/><line x1="12" y1="6" x2="12" y2="10" stroke="#3D3D8F" stroke-width="1.5"/></g>
-      </svg>
-      <div style="display:inline-flex;align-items:center;gap:6px;background:white;border-radius:20px;padding:5px 14px;margin-bottom:12px;">
-        <span style="font-size:13px;">✈️</span>
-        <span style="font-size:11px;color:#3D3D8F;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;">Telegram канал</span>
-      </div>
-      <h3 class="tg-title">Психологія професійного життя</h3>
-      <p class="tg-desc">Щотижня про роботу яка або наповнює або забирає · @innahorkovenko</p>
-      <a href="https://t.me/innahorkovenko" class="btn-tg">Підписатись →</a>
-    </div>
-  </div>
-
   <!-- FOOTER -->
   <div class="footer fade-up d8">
     <div class="footer-script">твій вулик чекає на тебе ♡</div>
     <div class="footer-copy">@inna_horkovenko · 2026</div>
   </div>
 
-</div>
-</body>
-</html>
-
-</div>
-</body>
-</html>
 </div>
 </body>
 </html>
