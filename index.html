@@ -127,9 +127,10 @@
     font-weight: 400;
     transition: all 0.25s ease;
     font-family: 'Inter', sans-serif;
+    box-shadow: 0 2px 12px rgba(61,61,143,0.07);
   }
 
-  .link-btn:hover { border-color: var(--blue); transform: translateX(4px); }
+  .link-btn:hover { border-color: var(--blue); transform: translateY(-2px); box-shadow: 0 10px 28px rgba(61,61,143,0.16); }
 
   .link-btn.primary {
     background: var(--blue);
@@ -178,6 +179,7 @@
     border-radius: 16px;
     padding: 24px;
     margin-bottom: 0;
+    box-shadow: 0 2px 12px rgba(61,61,143,0.07);
   }
 
   .about-text {
@@ -200,6 +202,7 @@
     border-radius: 16px;
     padding: 24px;
     border-left: 3px solid var(--blue);
+    box-shadow: 0 2px 12px rgba(61,61,143,0.07);
   }
 
   .review-quote {
@@ -223,9 +226,11 @@
 
   /* CONSULTATION */
   .consult-card {
-    background: var(--white);
+    background: linear-gradient(160deg, var(--white), #FBF6EA);
     border-radius: 16px;
     padding: 28px 24px;
+    border: 1.5px solid rgba(139,105,20,0.35);
+    box-shadow: 0 6px 24px rgba(139,105,20,0.14);
   }
 
   .consult-title {
@@ -280,25 +285,60 @@
 
   /* TELEGRAM */
   .tg-card {
-    background: var(--blue);
-    border-radius: 16px;
-    padding: 28px 24px;
+    background: linear-gradient(155deg, #46468f 0%, #2b2b63 100%);
+    border-radius: 20px;
+    padding: 36px 28px;
     text-align: center;
     color: white;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 14px 40px rgba(43,43,99,0.35);
   }
 
   .tg-icon { font-size: 36px; margin-bottom: 12px; display: block; }
 
+  .tg-eyebrow {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 20px; padding: 6px 16px; margin-bottom: 18px;
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600;
+  }
+
   .tg-title {
     font-family: 'Playfair Display', serif;
-    font-size: 20px;
-    margin-bottom: 8px;
-    font-weight: 400;
+    font-size: 25px;
+    margin-bottom: 14px;
+    font-weight: 700;
+    line-height: 1.3;
+    position: relative;
+  }
+
+  .tg-benefits {
+    list-style: none;
+    text-align: left;
+    max-width: 340px;
+    margin: 0 auto 24px;
+    position: relative;
+  }
+
+  .tg-benefits li {
+    font-size: 14px;
+    line-height: 1.5;
+    padding: 8px 0 8px 30px;
+    position: relative;
+    font-weight: 300;
+    color: rgba(255,255,255,0.92);
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+  }
+  .tg-benefits li:last-child { border-bottom: none; }
+  .tg-benefits li::before {
+    content: '✓'; position: absolute; left: 0; top: 8px;
+    color: #FFD84D; font-weight: 700; font-size: 15px;
   }
 
   .tg-desc {
     font-size: 13px;
-    opacity: 0.8;
+    opacity: 0.75;
     margin-bottom: 20px;
     line-height: 1.6;
     font-weight: 300;
@@ -306,20 +346,22 @@
 
   .btn-tg {
     display: inline-block;
-    background: white;
-    color: var(--blue);
-    padding: 14px 32px;
+    background: #FFD84D;
+    color: #2b2b63;
+    padding: 15px 36px;
     border-radius: 50px;
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 14.5px;
+    font-weight: 700;
     text-decoration: none;
     transition: all 0.25s ease;
     font-family: 'Inter', sans-serif;
+    position: relative;
+    box-shadow: 0 6px 18px rgba(255,216,77,0.3);
   }
 
   .btn-tg:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    box-shadow: 0 10px 26px rgba(255,216,77,0.45);
   }
 
   /* BOOK */
@@ -430,15 +472,27 @@
   <div class="fade-up d5">
     <div class="section-label">Особисте · практики та звички</div>
     <div class="links">
-      <a href="https://tviy.goodzik.net" class="link-btn">
+      <a href="https://tviy.goodzik.net" class="link-btn" style="background:linear-gradient(160deg,var(--white),#FBF6EA);border:1.5px solid rgba(139,105,20,0.25);">
         <div class="link-left">
-          <span class="link-icon">🔘</span>
+          <span class="link-icon" style="display:inline-flex;">
+            <svg width="26" height="26" viewBox="0 0 100 100" fill="none">
+              <circle cx="50" cy="50" r="47" fill="#8B6914"/>
+              <circle cx="50" cy="18" r="6" fill="#F0EAE0"/>
+              <circle cx="50" cy="82" r="6" fill="#F0EAE0"/>
+              <circle cx="18" cy="50" r="6" fill="#F0EAE0"/>
+              <circle cx="82" cy="50" r="6" fill="#F0EAE0"/>
+              <line x1="50" y1="18" x2="50" y2="82" stroke="#F0EAE0" stroke-width="3" opacity="0.7"/>
+              <line x1="18" y1="50" x2="82" y2="50" stroke="#F0EAE0" stroke-width="3" opacity="0.7"/>
+            </svg>
+          </span>
           <div>
             Ґудзик-підбір
             <div class="link-sub">Практика чи звичка з GOODzik саме під твій стан</div>
           </div>
         </div>
-        <span class="arrow">→</span>
+        <svg class="arrow" width="22" height="22" viewBox="0 0 24 24" fill="none" style="background:transparent;">
+          <path d="M5 12h14M13 6l6 6-6 6" stroke="#8B6914" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
       </a>
     </div>
   </div>
@@ -467,24 +521,28 @@
   <!-- TELEGRAM: СПІЛЬНИЙ КАНАЛ ДЛЯ ОБОХ ТРЕКІВ -->
   <div class="fade-up d8">
     <div class="tg-card">
-      <svg width="160" height="140" viewBox="0 0 160 140" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block; margin: 0 auto 4px;">
-        <ellipse cx="80" cy="105" rx="52" ry="10" fill="rgba(255,255,255,0.15)"/>
-        <g transform="translate(25, 78)"><path d="M15 0 L25 -8 L35 0 L35 14 L25 22 L15 14 Z" fill="rgba(255,255,255,0.25)" stroke="rgba(255,255,255,0.5)" stroke-width="1"/><path d="M35 0 L45 -8 L55 0 L55 14 L45 22 L35 14 Z" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.5)" stroke-width="1"/><path d="M55 0 L65 -8 L75 0 L75 14 L65 22 L55 14 Z" fill="rgba(255,255,255,0.25)" stroke="rgba(255,255,255,0.5)" stroke-width="1"/><path d="M75 0 L85 -8 L95 0 L95 14 L85 22 L75 14 Z" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.5)" stroke-width="1"/></g>
-        <g transform="translate(35, 56)"><path d="M15 0 L25 -8 L35 0 L35 14 L25 22 L15 14 Z" fill="rgba(255,255,255,0.3)" stroke="rgba(255,255,255,0.6)" stroke-width="1"/><path d="M35 0 L45 -8 L55 0 L55 14 L45 22 L35 14 Z" fill="rgba(255,255,255,0.35)" stroke="rgba(255,255,255,0.6)" stroke-width="1"/><path d="M55 0 L65 -8 L75 0 L75 14 L65 22 L55 14 Z" fill="rgba(255,255,255,0.3)" stroke="rgba(255,255,255,0.6)" stroke-width="1"/></g>
-        <g transform="translate(45, 34)"><path d="M15 0 L25 -8 L35 0 L35 14 L25 22 L15 14 Z" fill="rgba(255,255,255,0.4)" stroke="rgba(255,255,255,0.7)" stroke-width="1"/><path d="M35 0 L45 -8 L55 0 L55 14 L45 22 L35 14 Z" fill="rgba(255,255,255,0.4)" stroke="rgba(255,255,255,0.7)" stroke-width="1"/></g>
-        <ellipse cx="58" cy="100" rx="3" ry="4" fill="rgba(255,220,100,0.7)"/>
-        <ellipse cx="80" cy="103" rx="3" ry="4" fill="rgba(255,220,100,0.7)"/>
-        <ellipse cx="102" cy="100" rx="3" ry="4" fill="rgba(255,220,100,0.7)"/>
-        <g transform="translate(18, 50)"><ellipse cx="8" cy="8" rx="6" ry="5" fill="rgba(255,220,50,0.9)"/><line x1="4" y1="6" x2="4" y2="10" stroke="#3D3D8F" stroke-width="1.5"/><line x1="8" y1="5" x2="8" y2="11" stroke="#3D3D8F" stroke-width="1.5"/><line x1="12" y1="6" x2="12" y2="10" stroke="#3D3D8F" stroke-width="1.5"/></g>
-        <g transform="translate(126, 42)"><ellipse cx="8" cy="8" rx="6" ry="5" fill="rgba(255,220,50,0.9)"/><line x1="4" y1="6" x2="4" y2="10" stroke="#3D3D8F" stroke-width="1.5"/><line x1="8" y1="5" x2="8" y2="11" stroke="#3D3D8F" stroke-width="1.5"/><line x1="12" y1="6" x2="12" y2="10" stroke="#3D3D8F" stroke-width="1.5"/></g>
+      <svg width="100%" height="100%" viewBox="0 0 400 300" style="position:absolute;top:0;left:0;opacity:0.5;pointer-events:none;">
+        <defs>
+          <pattern id="hexPattern" width="46" height="80" patternUnits="userSpaceOnUse" patternTransform="scale(1)">
+            <path d="M23 0 L46 13 L46 40 L23 53 L0 40 L0 13 Z" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="1.5"/>
+            <path d="M23 40 L46 53 L46 80 L23 93 L0 80 L0 53 Z" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="1.5"/>
+          </pattern>
+        </defs>
+        <rect width="400" height="300" fill="url(#hexPattern)"/>
       </svg>
-      <div style="display:inline-flex;align-items:center;gap:6px;background:white;border-radius:20px;padding:5px 14px;margin-bottom:12px;">
-        <span style="font-size:13px;">✈️</span>
-        <span style="font-size:11px;color:#3D3D8F;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;">Telegram канал</span>
+
+      <div style="position:relative;">
+        <div class="tg-eyebrow">
+          <span>✈️</span><span>@innahorkovenko</span>
+        </div>
+        <h3 class="tg-title">Думаю вголос про роботу —<br>без причесаних порад</h3>
+        <ul class="tg-benefits">
+          <li>Чесний розбір робочих ситуацій щотижня</li>
+          <li>Практики між справами — 2 хвилини, не 20</li>
+          <li>Жодного «ти зможеш все». Тільки те, що працює</li>
+        </ul>
+        <a href="https://t.me/innahorkovenko" class="btn-tg">Приєднатись →</a>
       </div>
-      <h3 class="tg-title">Практики і психологія професійного життя</h3>
-      <p class="tg-desc">Щотижня про роботу яка або наповнює або забирає — і про чесний погляд на себе між справами · @innahorkovenko</p>
-      <a href="https://t.me/innahorkovenko" class="btn-tg">Підписатись →</a>
     </div>
   </div>
 
